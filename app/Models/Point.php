@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Point extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'login',
+        'password',
+        'restaurant_id',
+        'name',
+    ];
+
+    protected $guarded = [
+        'closed_at'
+    ];
 }
