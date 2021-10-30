@@ -19,4 +19,9 @@ class Point extends Model
     protected $guarded = [
         'closed_at'
     ];
+
+    public function notifications()
+    {
+        return $this->hasMany(NotificationText::class);
+    }
 }
