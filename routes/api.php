@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PointController;
-use App\Http\Controllers\RestourantController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('restoutant', RestourantController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+
+
+
+Route::resource('restaurant', RestaurantController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 Route::resource('point', PointController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 Route::resource('order', OrderController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+
+
 
 

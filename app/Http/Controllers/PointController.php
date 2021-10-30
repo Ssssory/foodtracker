@@ -26,10 +26,10 @@ class PointController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'login' => 'reqired|min:6|unique',
-            'password' => 'reqired|min:6',
-            'name' => 'reqired|min:6',
-            'restaurant_id' => 'reqired|int'
+            'login' => 'required|min:6',
+            'password' => 'required|min:6',
+            'name' => 'required|min:6',
+            'restaurant_id' => 'required|int'
         ]);
 
         $newPoint = Point::create($request->all());

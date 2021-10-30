@@ -26,9 +26,9 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'order_id' => 'reqired',
-            'client_id' => 'reqired|integer',
-            'point_id' => 'reqired|integer'
+            'order_id' => 'required',
+            'client_id' => 'required|integer',
+            'point_id' => 'required|integer'
         ]);
 
         $order = Order::create($request->all());

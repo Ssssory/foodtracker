@@ -6,7 +6,7 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class RestourantController extends Controller
+class RestaurantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,13 +25,12 @@ class RestourantController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'login'=>'reqired|min:6|unique',
-            'password'=>'reqired|min:6',
-            'name'=>'reqired|min:6',
-            'email'=>'somtimes|email|unique'
-        ]);
 
+        $request->validate([
+            'login'=> 'required|min:4',
+            'password'=>'required|min:4',
+            'name'=>'required|min:4'
+        ]);
         $newRestaurant = Restaurant::create($request->all());
 
         return response()->json($newRestaurant);
@@ -45,7 +44,7 @@ class RestourantController extends Controller
      */
     public function show($id)
     {
-        $restaurant = Restaurant::findOfFail($id);
+        $restaurant = Restaurant::findOrFail($id);
 
         return response()->json($restaurant);
     }
