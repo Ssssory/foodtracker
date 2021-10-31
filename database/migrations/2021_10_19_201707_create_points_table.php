@@ -20,6 +20,8 @@ class CreatePointsTable extends Migration
             $table->string('password');
             $table->string('address')->nullable();
             $table->string('name');
+            $table->string('token')->nullable();
+            $table->dateTime('token_start')->nullable();
             $table->dateTime('closed_at')->nullable();
             $table->timestamps();
         });
