@@ -20,6 +20,11 @@ class Point extends Model
         'closed_at'
     ];
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function notifications()
     {
         return $this->hasMany(NotificationText::class);

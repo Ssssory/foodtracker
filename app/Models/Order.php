@@ -28,4 +28,9 @@ class Order extends Model
         }
         
     }
+
+    public function point()
+    {
+        return $this->belongsTo(Point::class);
+    }
 }

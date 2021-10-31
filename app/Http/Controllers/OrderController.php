@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderStoreRquest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -23,15 +24,14 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderStoreRquest $request)
     {
-        $this->validate($request, [
-            'order_id' => 'required',
-            'client_id' => 'required|integer',
-            'point_id' => 'required|integer'
-        ]);
-
-        $order = Order::create($request->all());
+        $order = new Order;
+        $order->order_id = $request->input('order');
+        $order->external_id = $request->input('external', null);
+        $order->status = "new";
+        $order->point()->associate($request->point);
+        $order->save();
 
         return response()->json($order);
     }
