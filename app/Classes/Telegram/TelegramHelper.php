@@ -28,7 +28,7 @@ class TelegramHelper
             $order_id = $data->orderId;
 
             $order = Order::where(['order_id' => $order_id, 'point_id' => $point_id])
-                ->whereDate('cteated_at', '>=', Carbon::createFromTimeString('00:00'))
+                ->whereDate('created_at', '>=', Carbon::createFromTimeString('00:00'))
                 ->first();
         } catch (Exception $e) {
             logger($e->getMessage());
