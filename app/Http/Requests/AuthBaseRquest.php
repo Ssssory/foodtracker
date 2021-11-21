@@ -26,4 +26,9 @@ class AuthBaseRquest extends FormRequest
         $this->merge(['point' => $point]);
         return true;
     }
+
+    public function rules()
+    {
+        return [];
+    }
 }
