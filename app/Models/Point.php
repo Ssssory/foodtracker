@@ -20,6 +20,17 @@ class Point extends Model
         'closed_at'
     ];
 
+    protected $hidden = [
+        'closed_at',
+        'token_start',
+        'token',
+        'closed_at'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i',
+    ];
+
     public function orders()
     {
         return $this->hasMany(Order::class);
