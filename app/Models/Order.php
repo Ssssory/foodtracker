@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,10 @@ class Order extends Model
         'client_id',
         'point_id',
         'status',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i',
     ];
 
 
@@ -32,5 +37,16 @@ class Order extends Model
     public function point()
     {
         return $this->belongsTo(Point::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function scopeToday($query, $point)
+    {
+        $query->where('point_id', $point->id)
+            ->whereDate('created_at', Carbon::today());
     }
 }
