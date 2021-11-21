@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PointController;
+use App\Http\Controllers\PublicApiController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('auth', [AuthController::class, 'auth']);
+Route::get('list', [PublicApiController::class, 'list']);
+Route::get('link', [PublicApiController::class, 'link']);
 
 
 
