@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Classes\Messages;
 use App\Classes\Telegram\TelegramHelper;
-use App\Events\SendMessage;
 use App\Http\Requests\AuthBaseRquest;
+use App\Jobs\SendMessage;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 
 class PublicApiController extends Controller
 {
+
+    /**
+     * by minutes
+     */
+    const TIMEOUT_RESEND_READY_MESSAGE = 20;
 
     /**
      *
@@ -60,9 +65,9 @@ class PublicApiController extends Controller
 
         $order = Order::today($request->point)->where('order_id', $request->order_id)->firstOrFail();
 
-        $order->update(['status' => $request->status]); 
+        $order->update(['status' => $request->status]);
 
-        SendMessage::dispatch($order);
+        SendMessage::dispatch($order)->delay(now()->addMinutes(static::TIMEOUT_RESEND_READY_MESSAGE));
 
         if ($request->status == 'READY') {
             $message = Messages::getDefaultMessages()['default_ready_text'];
