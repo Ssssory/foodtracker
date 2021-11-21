@@ -59,18 +59,17 @@ class PublicApiController extends Controller
     public function status(AuthBaseRquest $request): JsonResponse
     {
         $request->validate([
-            'order_id' => 'required|min:6',
+            'order_id' => 'required',
             'status' => 'required',
         ]);
 
         $order = Order::today($request->point)->where('order_id', $request->order_id)->firstOrFail();
 
         $order->update(['status' => $request->status]);
-
-        SendMessage::dispatch($order)->delay(now()->addMinutes(static::TIMEOUT_RESEND_READY_MESSAGE));
-
+   
         if ($request->status == 'READY') {
             $message = Messages::getDefaultMessages()['default_ready_text'];
+            SendMessage::dispatch($order)->delay(now()->addMinutes(static::TIMEOUT_RESEND_READY_MESSAGE));
         }
 
         if ($request->status == 'CALL') {
@@ -88,6 +87,4 @@ class PublicApiController extends Controller
             'created_at' => $order->created_at
         ]);
     }
-
-
 }
