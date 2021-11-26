@@ -29,7 +29,3 @@ Route::post('status', [PublicApiController::class, 'status']);
 Route::resource('restaurant', RestaurantController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 Route::resource('point', PointController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 Route::resource('order', OrderController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
-
-
-
-

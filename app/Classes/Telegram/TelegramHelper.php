@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Classes\Telegram;
 
 use App\Models\Client;
@@ -11,7 +12,8 @@ use Longman\TelegramBot\Telegram;
 
 class TelegramHelper
 {
-    public static function sendMessage($id, $message): void {
+    public static function sendMessage($id, $message): void
+    {
         new Telegram(env('TELEGRAMM_API_KEY'), env('TELEGRAMM_API_NAME'));
 
         Request::sendMessage([
@@ -22,7 +24,7 @@ class TelegramHelper
 
     public static function associateUserWithOrder($hash, $chat_id): Point
     {
-        try { 
+        try {
             $data = json_decode(base64_decode($hash));
             $point_id = $data->point;
             $order_id = $data->orderId;
@@ -40,12 +42,12 @@ class TelegramHelper
             $point->name = 'default';
             return $point;
         }
-        
+
         if ($order) {
             $client = Client::where([
-                'messenger_type' => 'telegram', 
+                'messenger_type' => 'telegram',
                 'messenger_id' => $chat_id
-                ])
+            ])
                 ->first();
             if (!$client) {
                 $client = Client::create(['messenger_id' => $chat_id]);

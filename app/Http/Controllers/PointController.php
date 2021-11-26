@@ -21,16 +21,21 @@ class PointController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     *
+     * @return void
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'login' => 'required|min:6',
-            'password' => 'required|min:6',
-            'name' => 'required|min:6',
-            'restaurant_id' => 'required|int'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'login' => 'required|min:6',
+                'password' => 'required|min:6',
+                'name' => 'required|min:6',
+                'restaurant_id' => 'required|int',
+            ]
+        );
 
         $newPoint = Point::create($request->all());
 
@@ -40,7 +45,7 @@ class PointController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -53,8 +58,8 @@ class PointController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -65,7 +70,8 @@ class PointController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
