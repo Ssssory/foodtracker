@@ -8,6 +8,7 @@ use App\Http\Requests\AuthBaseRquest;
 use App\Jobs\SendMessage;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class PublicApiController extends Controller
 {
@@ -45,13 +46,13 @@ class PublicApiController extends Controller
      * @param AuthBaseRquest $request
      * @return JsonResponse
      */
-    public function link(AuthBaseRquest $request): JsonResponse
+    public function link(Request $request): JsonResponse
     {
         $link = env('TELEGRAMM_API_LINK_ANSWER');
 
         return response()->json([
             'link' => $link,
-            'point' => $request->point
+            // 'point' => $request->point
         ]);
     }
 
