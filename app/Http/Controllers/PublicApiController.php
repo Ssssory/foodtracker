@@ -29,9 +29,9 @@ class PublicApiController extends Controller
 
         $orders->transform(function ($item) {
             return [
-                'order_id' => $item->order_id, 
-                'external_id' => $item->external_id, 
-                'status' => $item->status, 
+                'order_id' => $item->order_id,
+                'external_id' => $item->external_id,
+                'status' => $item->status,
                 'created_at' => $item->created_at
             ];
         });
@@ -42,11 +42,9 @@ class PublicApiController extends Controller
     }
 
     /**
-     *
-     * @param AuthBaseRquest $request
      * @return JsonResponse
      */
-    public function link(Request $request): JsonResponse
+    public function link(): JsonResponse
     {
         $link = env('TELEGRAMM_API_LINK_ANSWER');
 
@@ -56,7 +54,12 @@ class PublicApiController extends Controller
         ]);
     }
 
-
+    /**
+     * update order status
+     *
+     * @param AuthBaseRquest $request
+     * @return JsonResponse
+     */
     public function status(AuthBaseRquest $request): JsonResponse
     {
         $request->validate([
@@ -67,7 +70,7 @@ class PublicApiController extends Controller
         $order = Order::today($request->point)->where('order_id', $request->order_id)->firstOrFail();
 
         $order->update(['status' => $request->status]);
-   
+
         if ($request->status == 'READY') {
             $message = Messages::getDefaultMessages()['default_ready_text'];
             SendMessage::dispatch($order)->delay(now()->addMinutes(static::TIMEOUT_RESEND_READY_MESSAGE));
