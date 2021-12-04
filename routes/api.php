@@ -18,10 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('auth', [AuthController::class, 'auth']);
-Route::get('list', [PublicApiController::class, 'list']);
-Route::get('link', [PublicApiController::class, 'link']);
-Route::post('status', [PublicApiController::class, 'status']);
+Route::middleware(['request.log'])->group(function () {
+    Route::post('auth', [AuthController::class, 'auth']);
+    Route::get('list', [PublicApiController::class, 'list']);
+    Route::get('link', [PublicApiController::class, 'link']);
+    Route::post('status', [PublicApiController::class, 'status']);
+});
+
 
 
 
