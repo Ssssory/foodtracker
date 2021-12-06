@@ -50,7 +50,7 @@ class PointController extends Controller
      */
     public function show($id)
     {
-        $point = Point::findOfFail($id);
+        $point = Point::findOrFail($id);
 
         return response()->json($point);
     }
@@ -74,7 +74,7 @@ class PointController extends Controller
             ]
         );
 
-        $point = Point::findOfFail($id);
+        $point = Point::findOrFail($id);
 
         if ($request->address) {
             $point->fill(['address' => $request->address]);
