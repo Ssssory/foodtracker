@@ -84,6 +84,8 @@ class PointController extends Controller
             $point->fill(['name' => $request->name]);
         }
 
+        $point->save();
+
         return response()->json($point);
     }
 
