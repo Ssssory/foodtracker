@@ -64,7 +64,27 @@ class PointController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return response()->json(self::TIME_LESS_TEXT, Response::HTTP_METHOD_NOT_ALLOWED);
+        $this->validate(
+            $request,
+            [
+                'login' => 'nullable|min:6',
+                'password' => 'nullable|min:6',
+                'name' => 'nullable|min:6',
+                'address' => 'nullable|int',
+            ]
+        );
+
+        $point = Point::findOfFail($id);
+
+        if ($request->address) {
+            $point->fill(['address' => $request->address]);
+        }
+
+        if ($request->name) {
+            $point->fill(['name' => $request->name]);
+        }
+
+        return response()->json($point);
     }
 
     /**
