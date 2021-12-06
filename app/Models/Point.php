@@ -14,6 +14,7 @@ class Point extends Model
         'password',
         'restaurant_id',
         'name',
+        'address'
     ];
 
     protected $guarded = [
