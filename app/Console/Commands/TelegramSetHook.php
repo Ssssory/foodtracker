@@ -47,7 +47,7 @@ class TelegramSetHook extends Command
     {
         try {
             // Create Telegram API object
-            $telegram = new Telegram(config('telegram.key'), config('telegram.name'));
+            $telegram = new Telegram(config('app.telegram.key'), config('app.telegram.name'));
 
             // Set webhook
             $result = $telegram->setWebhook($this->hook_url);

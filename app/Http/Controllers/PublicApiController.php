@@ -46,7 +46,7 @@ class PublicApiController extends Controller
      */
     public function link(AuthBaseRquest $request): JsonResponse
     {
-        $link = config('telegram.link');
+        $link = config('app.telegram.link');
 
         return response()->json([
             'link' => $link,

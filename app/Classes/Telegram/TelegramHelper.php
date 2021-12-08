@@ -14,7 +14,7 @@ class TelegramHelper
 {
     public static function sendMessage($id, $message): void
     {
-        new Telegram(config('telegram.key'), config('telegram.name'));
+        new Telegram(config('app.telegram.key'), config('app.telegram.name'));
 
         Request::sendMessage([
             'chat_id' => $id,

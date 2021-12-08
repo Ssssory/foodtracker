@@ -16,7 +16,7 @@ class BotController extends Controller
     {
         try {
             // Create Telegram API object
-            $telegram = new Telegram(config('telegram.key'), config('telegram.name'));
+            $telegram = new Telegram(config('app.telegram.key'), config('app.telegram.name'));
 
             $telegram->useGetUpdatesWithoutDatabase();
 
