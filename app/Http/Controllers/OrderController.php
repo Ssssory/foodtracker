@@ -29,7 +29,7 @@ class OrderController extends Controller
         $order = new Order;
         $order->order_id = $request->input('order');
         $order->external_id = $request->input('external', null);
-        $order->status = "new";
+        $order->status = "NEW";
         $order->point()->associate($request->point);
         $order->save();
 
