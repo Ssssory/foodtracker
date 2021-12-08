@@ -30,9 +30,9 @@ class PointController extends Controller
         $this->validate(
             $request,
             [
-                'login' => 'required|min:6',
-                'password' => 'required|min:6',
-                'name' => 'required|min:6',
+                'login' => 'required|string|min:6',
+                'password' => 'required|string|min:6',
+                'name' => 'required|string|min:6',
                 'restaurant_id' => 'required|int',
             ]
         );
@@ -67,10 +67,10 @@ class PointController extends Controller
         $this->validate(
             $request,
             [
-                'login' => 'nullable|min:6',
-                'password' => 'nullable|min:6',
-                'name' => 'nullable|min:6',
-                'address' => 'nullable|int',
+                'login' => 'nullable|string|min:6',
+                'password' => 'nullable|string|min:6',
+                'name' => 'nullable|string|min:6',
+                'address' => 'nullable|string',
             ]
         );
 
