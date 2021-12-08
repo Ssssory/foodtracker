@@ -231,4 +231,10 @@ return [
 
     ],
 
+    'telegram' => [
+        'key' =>  env('TELEGRAMM_API_KEY'),
+        'name' =>  env('TELEGRAMM_API_NAME'),
+        'link' => env('TELEGRAMM_API_LINK_ANSWER')
+    ],
+
 ];
