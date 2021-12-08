@@ -44,13 +44,13 @@ class PublicApiController extends Controller
     /**
      * @return JsonResponse
      */
-    public function link(): JsonResponse
+    public function link(AuthBaseRquest $request): JsonResponse
     {
-        $link = env('TELEGRAMM_API_LINK_ANSWER');
+        $link = config('telegram.link');
 
         return response()->json([
             'link' => $link,
-            // 'point' => $request->point
+            'point' => $request->point
         ]);
     }
 

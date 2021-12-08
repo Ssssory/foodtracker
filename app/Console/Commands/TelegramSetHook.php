@@ -35,11 +35,7 @@ class TelegramSetHook extends Command
     {
         parent::__construct();
 
-        if (is_null(env('APP_URL'))) {
-            throw new Exception('not read env');
-        }
-
-        $this->hook_url = env('APP_URL') . '/webhook';
+        $this->hook_url = config('url') . '/webhook';
     }
 
     /**
@@ -51,7 +47,7 @@ class TelegramSetHook extends Command
     {
         try {
             // Create Telegram API object
-            $telegram = new Telegram(env('TELEGRAMM_API_KEY'), env('TELEGRAMM_API_NAME'));
+            $telegram = new Telegram(config('telegram.key'), config('telegram.name'));
 
             // Set webhook
             $result = $telegram->setWebhook($this->hook_url);

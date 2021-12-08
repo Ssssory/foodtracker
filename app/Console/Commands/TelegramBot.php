@@ -42,7 +42,7 @@ class TelegramBot extends Command
     {
         try {
             // Create Telegram API object
-            $telegram = new Telegram(env('TELEGRAMM_API_KEY'), env('TELEGRAMM_API_NAME'));
+            $telegram = new Telegram(config('telegram.key'), config('telegram.name'));
 
             $telegram->useGetUpdatesWithoutDatabase();
 
