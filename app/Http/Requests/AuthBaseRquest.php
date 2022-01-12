@@ -17,11 +17,11 @@ class AuthBaseRquest extends FormRequest
     {
         $token = $this->header('Authorization');
         if (!$token) {
-            return false;
+            return abort(401, "Unautorized");
         }
         $point = Point::where('token', $token)->whereDate('token_start', '>', Carbon::now()->subDay())->first();
         if (!$point) {
-            return false;
+            return abort(401, "Unautorized");
         }
         $this->merge(['point' => $point]);
         return true;
