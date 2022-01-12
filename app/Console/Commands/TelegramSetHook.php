@@ -35,7 +35,7 @@ class TelegramSetHook extends Command
     {
         parent::__construct();
 
-        $this->hook_url = config('url') . '/webhook';
+        $this->hook_url = config('app.url') . '/webhook';
     }
 
     /**
