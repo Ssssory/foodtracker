@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/webhook', BotController::class);
+Route::post('/webhook', BotController::class);
