@@ -34,6 +34,7 @@ class RequestsLogger
     public function terminate(Request $request, JsonResponse $response)
     {
         Log::info('Outgoing response:');
-        Log::info($response);
+        Log::info($response->getStatusCode());
+        Log::info($response->getContent());
     }
 }
