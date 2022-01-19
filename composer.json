@@ -6,12 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "badfarm/zanzara": "^0.8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5",
-        "longman/telegram-bot": "^0.74.0"
+        "laravel/tinker": "^2.5"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
